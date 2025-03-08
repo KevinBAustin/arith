@@ -1,0 +1,44 @@
+Program ::= e
+
+Asg     ::= Var = Asg
+            | Exp
+
+Exp     ::= Exp + Term
+            | Exp - term
+            | Term
+	    | Asg
+
+Asg	::= Identifier = Number 
+
+Term    ::= Term * Neg
+            | Term / Neg
+            | Neg
+
+Neg     ::= ( - Pow )
+            | Pow
+
+Pow ::= Pow ^ Factor
+            | Factor
+
+Factor  ::= ( Exp )
+            | Number
+
+Number  ::= Digit
+            | DigitNotZero Digit+
+            | - Digit
+            | - DigitNotZero Digit+
+            | Number . Digit+
+
+Identifier  ::= Letter LetterOrDigit*
+
+Var     ::= Identifier
+
+Letter  ::= [a-z]
+            | [A-Z]
+
+Digit   ::= [0-9]
+
+DigitNotZero ::= [1-9]
+
+LetterOrDigit   ::= Letter
+                    | Digit
